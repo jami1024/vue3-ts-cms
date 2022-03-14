@@ -1,4 +1,4 @@
-const path  = require('path')
+const path = require('path')
 
 module.exports = {
   // 1.配置方式1:CLI提供的属性
