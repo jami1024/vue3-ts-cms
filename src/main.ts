@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { registerApp } from './global'
 import App from './App.vue'
 
+import './service/axios_demo'
 // 全局引用
 // import ElementPlus from 'element-plus'
 // import 'element-plus/dist/index.css'
