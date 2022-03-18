@@ -40,6 +40,8 @@ axios
     console.log('all', res[0])
     console.log('all', res[1])
   })
+
+// 拦截器
 // axios.get('/home/multidata').then((res) => {
 //   console.log(res.data, res.status)
 // })
