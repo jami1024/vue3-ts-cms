@@ -41,7 +41,36 @@ axios
     console.log('all', res[1])
   })
 
-// 拦截器
+// 请求拦截器
+axios.interceptors.request.use(
+  (config) => {
+    // 请求发送成功会执行的函数
+    //1加token
+    //2 loading动画
+    console.log('请求发送成功')
+    return config
+  },
+  (err) => {
+    // 请求失败会执行的函数
+    console.log('请求发送错误')
+    return err
+  }
+)
+
+// 响应拦截器
+axios.interceptors.response.use(
+  (res) => {
+    // 响应成功会执行的函数
+    // 处理数据
+    console.log('响应成功')
+    return res
+  },
+  (err) => {
+    // 响应失败会执行的函数
+    console.log('响应失败')
+    return err
+  }
+)
 // axios.get('/home/multidata').then((res) => {
 //   console.log(res.data, res.status)
 // })
