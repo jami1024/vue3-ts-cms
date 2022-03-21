@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { registerApp } from './global'
 import App from './App.vue'
 
-import './service/axios_demo'
+// import './service/axios_demo'
 // 全局引用
 // import ElementPlus from 'element-plus'
 // import 'element-plus/dist/index.css'
@@ -10,9 +10,15 @@ import './service/axios_demo'
 
 import router from './router'
 import store from './store'
+import zlRequest from './service'
 const app = createApp(App)
 registerApp(app)
 app.use(router)
 app.use(store)
 // app.use(ElementPlus)
 app.mount('#app')
+
+zlRequest.request({
+  url: '/home/multidata',
+  method: 'GET'
+})
