@@ -18,7 +18,20 @@ app.use(store)
 // app.use(ElementPlus)
 app.mount('#app')
 
-zlRequest.request({
-  url: '/home/multidata',
-  method: 'GET'
-})
+interface DataType {
+  data: any
+  returnCode: string
+  success: boolean
+}
+
+zlRequest
+  .get<DataType>({
+    url: '/home/multidata',
+    method: 'GET',
+    showLoading: false
+  })
+  .then((res) => {
+    console.log(res.data)
+    console.log(res.returnCode)
+    console.log(res.success)
+  })
