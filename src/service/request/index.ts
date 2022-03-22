@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import type { ZLRequestInterceptors, ZLRequestConfig } from './type'
 
 import { ElLoading } from 'element-plus'
