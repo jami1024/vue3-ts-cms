@@ -5,10 +5,14 @@ import {
   ElAlert,
   ElAside,
   ElButton,
+  ElCalendar,
   ElForm,
   ElFormItem,
+  ElIcon,
   ElInput,
-  ElRadio
+  ElRadio,
+  ElTabPane,
+  ElTabs
 } from 'element-plus'
 
 const components = [
@@ -18,7 +22,11 @@ const components = [
   ElForm,
   ElFormItem,
   ElInput,
-  ElRadio
+  ElRadio,
+  ElTabPane,
+  ElTabs,
+  ElIcon,
+  ElCalendar
 ]
 export default function (app: App): void {
   for (const component of components) {

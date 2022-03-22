@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import { registerApp } from './global'
 import App from './App.vue'
-
+import 'normalize.css'
+import './assets/css/index.less'
 // import './service/axios_demo'
 // 全局引用
 // import ElementPlus from 'element-plus'
@@ -11,6 +12,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import zlRequest from './service'
+
 const app = createApp(App)
 registerApp(app)
 app.use(router)
