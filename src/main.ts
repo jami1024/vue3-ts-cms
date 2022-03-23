@@ -11,7 +11,7 @@ import './assets/css/index.less'
 
 import router from './router'
 import store from './store'
-import zlRequest from './service'
+// import zlRequest from './service'
 
 const app = createApp(App)
 registerApp(app)
@@ -20,20 +20,20 @@ app.use(store)
 // app.use(ElementPlus)
 app.mount('#app')
 
-interface DataType {
-  data: any
-  returnCode: string
-  success: boolean
-}
+// interface DataType {
+//   data: any
+//   returnCode: string
+//   success: boolean
+// }
 
-zlRequest
-  .get<DataType>({
-    url: '/home/multidata',
-    method: 'GET',
-    showLoading: false
-  })
-  .then((res) => {
-    console.log(res.data)
-    console.log(res.returnCode)
-    console.log(res.success)
-  })
+// zlRequest
+//   .get<DataType>({
+//     url: '/home/multidata',
+//     method: 'GET',
+//     showLoading: false
+//   })
+//   .then((res) => {
+//     console.log(res.data)
+//     console.log(res.returnCode)
+//     console.log(res.success)
+//   })

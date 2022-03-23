@@ -10,7 +10,7 @@
       </el-tab-pane>
       <el-tab-pane name="phone">
         <template #label>
-          <span><i class="el-icon-mobile-phone"></i> 手机登录</span>
+          <span><i class="el-icon-mobile-phone"></i> LDAP登录</span>
         </template>
         <login-phone ref="phoneRef" />
       </el-tab-pane>
@@ -42,7 +42,7 @@ export default defineComponent({
     const isKeepPassword = ref(true)
     const accountRef = ref<InstanceType<typeof LoginAccount>>()
     const phoneRef = ref<InstanceType<typeof LoginPhone>>()
-    const currentTab = ref('account')
+    const currentTab = ref<string>('account')
 
     // 2.定义方法
     const handleLoginClick = () => {
