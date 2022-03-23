@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <img src="../../assets/img/background.jpg" alt="" class="wave" />
     <login-panel></login-panel>
   </div>
 </template>
@@ -25,6 +26,14 @@ export default defineComponent({
   align-items: center;
   width: 100%;
   height: 100%;
-  background: url('../../assets/img/login-bg.svg');
+  // background: url('../../assets/img/background.jpg');
+  // background: url('../../assets/img/login-bg.svg');
+}
+.wave {
+  position: fixed;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
 }
 </style>

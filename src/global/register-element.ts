@@ -6,10 +6,12 @@ import {
   ElAside,
   ElButton,
   ElCalendar,
+  ElCheckbox,
   ElForm,
   ElFormItem,
   ElIcon,
   ElInput,
+  ElLink,
   ElRadio,
   ElTabPane,
   ElTabs
@@ -26,7 +28,9 @@ const components = [
   ElTabPane,
   ElTabs,
   ElIcon,
-  ElCalendar
+  ElCalendar,
+  ElCheckbox,
+  ElLink
 ]
 export default function (app: App): void {
   for (const component of components) {
