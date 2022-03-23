@@ -13,12 +13,18 @@ const loginModule: Module<ILoginState, IRootState> = {
     }
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    changeToken(state, token: string) {
+      state.token = token
+    }
+  },
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
-      console.log('执行accountLoginAction', payload)
+      console.log('执行accountLoginAction', commit, payload)
       const loginResult = await accountLoginRequest(payload)
       console.log(loginResult)
+      const { id, token } = loginResult.data
+      commit('changeToken', token)
     }
   }
 }
