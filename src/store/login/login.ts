@@ -4,6 +4,7 @@ import { ILoginState } from './types'
 import { IRootState } from '../types'
 import { IAccount } from '@/service/login/types'
 import localCache from '@/utils/cache'
+import router from '@/router'
 
 import {
   accountLoginRequest,
@@ -34,13 +35,14 @@ const loginModule: Module<ILoginState, IRootState> = {
   },
   actions: {
     async accountLoginAction({ commit }, payload: IAccount) {
-      console.log('执行accountLoginAction', commit, payload)
+      // console.log('执行accountLoginAction', commit, payload)
       // 1.实现登陆逻辑
       const loginResult = await accountLoginRequest(payload)
-      console.log(loginResult)
+      // console.log(loginResult)
       const { id, token } = loginResult.data
       commit('changeToken', token)
       localCache.setCache('token', token)
+
       // 2. 请求登陆用户信息
       const userInfoResult = await requestUserInfoById(id)
       const userInfo = userInfoResult.data
@@ -52,7 +54,25 @@ const loginModule: Module<ILoginState, IRootState> = {
       const userMenus = userMenusResult.data
       console.log('userMenu', userMenus)
       commit('changeUserMenus', userMenus)
-      localCache.setCache('UserMenus', userMenus)
+      localCache.setCache('userMenus', userMenus)
+
+      // 4. 跳到首页
+      router.push('/main')
+    },
+    loadLocalLogin({ commit }) {
+      const token = localCache.getCache('token')
+      if (token) {
+        commit('changeToken', token)
+      }
+      const userInfo = localCache.getCache('userInfo')
+      if (userInfo) {
+        commit('changeUserInfo', userInfo)
+      }
+      const userMenus = localCache.getCache('userMenus')
+      if (userMenus) {
+        console.log('changeUserMenus', userMenus)
+        commit('changeUserMenus', userMenus)
+      }
     }
   }
 }

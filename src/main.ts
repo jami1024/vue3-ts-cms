@@ -11,12 +11,14 @@ import './assets/css/index.less'
 
 import router from './router'
 import store from './store'
+import { setupStore } from './store'
 // import zlRequest from './service'
 
 const app = createApp(App)
 registerApp(app)
 app.use(router)
 app.use(store)
+setupStore()
 // app.use(ElementPlus)
 app.mount('#app')
 
