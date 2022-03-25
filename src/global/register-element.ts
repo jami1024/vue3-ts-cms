@@ -7,11 +7,14 @@ import {
   ElButton,
   ElCalendar,
   ElCheckbox,
+  ElContainer,
   ElForm,
   ElFormItem,
+  ElHeader,
   ElIcon,
   ElInput,
   ElLink,
+  ElMain,
   ElRadio,
   ElTabPane,
   ElTabs
@@ -30,7 +33,11 @@ const components = [
   ElIcon,
   ElCalendar,
   ElCheckbox,
-  ElLink
+  ElLink,
+  ElAside,
+  ElContainer,
+  ElHeader,
+  ElMain
 ]
 export default function (app: App): void {
   for (const component of components) {
