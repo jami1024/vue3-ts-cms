@@ -2,7 +2,7 @@
   <div class="nav-menu">
     <div class="logo">
       <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
-      <span class="title">海王星平台</span>
+      <span v-if="!collapse" class="title">海王星平台</span>
     </div>
     <el-menu
       default-active="2"
@@ -47,6 +47,12 @@ import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
 
 export default defineComponent({
+  props: {
+    collapse: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
     const store = useStore()
     const userMenus = computed(() => store.state.login.userMenus)
