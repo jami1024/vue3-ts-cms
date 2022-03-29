@@ -25,12 +25,17 @@ const router = createRouter({
   routes,
   history: createWebHashHistory()
 })
-
+// 导航守卫
 router.beforeEach((to) => {
   if (to.path !== '/login') {
     const token = localCache.getCache('token')
     if (!token) {
       return '/login'
+    }
+  }
+  if (to.path.indexOf('/main') !== -1) {
+    if (to.name === '404') {
+      to.name = 'user'
     }
   }
 })
