@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { RouteRecordRaw } from 'vue-router'
 import localCache from '@/utils/cache'
+import { firstMenu } from '@/utils/map-menus'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -35,10 +36,8 @@ router.beforeEach((to) => {
       return '/login'
     }
   }
-  if (to.path.indexOf('/main') !== -1) {
-    if (to.name === '404') {
-      to.name = 'user'
-    }
+  if (to.path === '/main') {
+    return firstMenu.url
   }
 })
 export default router
