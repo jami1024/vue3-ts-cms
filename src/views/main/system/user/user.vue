@@ -1,31 +1,23 @@
 <template>
   <div class="user">
-    <zl-form v-bind="searchFormConfig" v-model="formData" />
+    <page-search :searchFormConfig="searchFormConfig" />
     <div class="content">user</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import ZlForm from '@/base-ui/form'
+import { defineComponent } from 'vue'
+import PageSearch from '@/components/page-search'
 import { searchFormConfig } from './config/search.config'
 
 export default defineComponent({
   name: 'user',
   components: {
-    ZlForm
+    PageSearch
   },
   setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
     return {
-      searchFormConfig,
-      formData
+      searchFormConfig
     }
   }
 })
