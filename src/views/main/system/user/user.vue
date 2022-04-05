@@ -1,12 +1,12 @@
 <template>
   <div class="user">
-    <zl-form v-bind="searchFormConfig" />
+    <zl-form v-bind="searchFormConfig" v-model="formData" />
     <div class="content">user</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import ZlForm from '@/base-ui/form'
 import { searchFormConfig } from './config/search.config'
 
@@ -16,8 +16,16 @@ export default defineComponent({
     ZlForm
   },
   setup() {
+    const formData = ref({
+      id: '',
+      name: '',
+      password: '',
+      sport: '',
+      createTime: ''
+    })
     return {
-      searchFormConfig
+      searchFormConfig,
+      formData
     }
   }
 })
