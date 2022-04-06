@@ -65,4 +65,9 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.content {
+  padding: 20px;
+  border-top: 20px solid #f5f5f5;
+}
+</style>
