@@ -106,19 +106,19 @@ class ZLRequest {
         })
     })
   }
-  get<T>(config: ZLRequestConfig<T>): Promise<T> {
+  get<T = any>(config: ZLRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: ZLRequestConfig<T>): Promise<T> {
+  post<T = any>(config: ZLRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  delete<T>(config: ZLRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: ZLRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 
-  patch<T>(config: ZLRequestConfig<T>): Promise<T> {
+  patch<T = any>(config: ZLRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
   // request() {}
