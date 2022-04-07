@@ -2,7 +2,12 @@
   <div class="user">
     <page-search :searchFormConfig="searchFormConfig" />
     <div class="content">
-      <zl-table :listData="userList" :propList="propList">
+      <zl-table
+        :listData="userList"
+        :propList="propList"
+        :showIndxColumn="showIndxColumn"
+        :showSelectColumn="showSelectColumn"
+      >
         <template #status="scope">
           <el-button
             plain
@@ -17,6 +22,16 @@
         </template>
         <template #updateAt="scope">
           <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
+        </template>
+        <template #handler>
+          <div class="handle-btns">
+            <el-button icon="el-icon-edit" size="mini" type="text"
+              >编辑
+            </el-button>
+            <el-button icon="el-icon-delete" size="mini" type="text"
+              >删除
+            </el-button>
+          </div>
         </template>
       </zl-table>
     </div>
@@ -63,12 +78,17 @@ export default defineComponent({
         label: '更新时间',
         minWidth: '250',
         slotName: 'updateAt'
-      }
+      },
+      { prop: '操作', minWidth: '100', slotName: 'handler' }
     ]
+    const showIndxColumn = true
+    const showSelectColumn = true
     return {
       searchFormConfig,
       userList,
-      propList
+      propList,
+      showIndxColumn,
+      showSelectColumn
     }
   }
 })
