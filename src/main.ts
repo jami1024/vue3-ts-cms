@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { registerApp } from './global'
+import { globalRegister } from './global'
 import App from './App.vue'
 import 'normalize.css'
 import './assets/css/index.less'
@@ -15,7 +15,8 @@ import { setupStore } from './store'
 // import zlRequest from './service'
 
 const app = createApp(App)
-registerApp(app)
+// registerApp(app)
+app.use(globalRegister)
 app.use(store)
 
 setupStore()
