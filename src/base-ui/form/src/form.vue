@@ -1,5 +1,5 @@
 <template>
-  <div class="zl-form">
+  <div class="hy-form">
     <div class="header">
       <slot name="header"></slot>
     </div>
@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, watch } from 'vue'
+import { defineComponent, PropType, ref, watch, computed } from 'vue'
 import { IFormItem } from '../types'
 
 export default defineComponent({
@@ -91,6 +91,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const formData = ref({ ...props.modelValue })
+
     watch(
       formData,
       (newValue) => {
@@ -101,6 +102,7 @@ export default defineComponent({
         deep: true
       }
     )
+
     return {
       formData
     }
@@ -109,7 +111,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.zl-form {
+.hy-form {
   padding-top: 22px;
 }
 </style>

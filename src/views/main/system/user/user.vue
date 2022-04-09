@@ -1,94 +1,30 @@
 <template>
   <div class="user">
     <page-search :searchFormConfig="searchFormConfig" />
-    <div class="content">
-      <zl-table
-        :listData="userList"
-        :propList="propList"
-        :showIndxColumn="showIndxColumn"
-        :showSelectColumn="showSelectColumn"
-      >
-        <template #status="scope">
-          <el-button
-            plain
-            size="mini"
-            :type="scope.row.enable ? 'success' : 'danger'"
-          >
-            {{ scope.row.enable ? '启用' : '禁用' }}
-          </el-button>
-        </template>
-        <template #createAt="scope">
-          <strong>{{ $filters.formatTime(scope.row.createAt) }}</strong>
-        </template>
-        <template #updateAt="scope">
-          <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
-        </template>
-        <template #handler>
-          <div class="handle-btns">
-            <el-button icon="el-icon-edit" size="mini" type="text"
-              >编辑
-            </el-button>
-            <el-button icon="el-icon-delete" size="mini" type="text"
-              >删除
-            </el-button>
-          </div>
-        </template>
-      </zl-table>
-    </div>
+    <page-content
+      :contentTableConfig="contentTableConfig"
+      pageName="users"
+    ></page-content>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import PageSearch from '@/components/page-search'
-import ZlTable from '@/base-ui/table'
+import PageContent from '@/components/page-content'
 import { searchFormConfig } from './config/search.config'
-import { useStore } from '@/store'
+import { contentTableConfig } from './config/content.config'
 
 export default defineComponent({
-  name: 'user',
+  name: 'users',
   components: {
     PageSearch,
-    ZlTable
+    PageContent
   },
   setup() {
-    const store = useStore()
-    store.dispatch('system/getPageListAction', {
-      pageUrl: '/users/list',
-      queryInfo: {
-        offset: 0,
-        size: 10
-      }
-    })
-    const userList = computed(() => store.state.system.userList)
-    // const userCount = computed(() => store.state.system.userCount)
-    const propList = [
-      { prop: 'name', label: '用户名', minWidth: '100' },
-      { prop: 'realname', label: '真实姓名', minWidth: '100' },
-      { prop: 'cellphone', label: '手机号码', minWidth: '100' },
-      { prop: 'enable', label: '状态', minWidth: '100', slotName: 'status' },
-      {
-        prop: 'createAt',
-        label: '创建时间',
-        minWidth: '250',
-        slotName: 'createAt'
-      },
-      {
-        prop: 'updateAt',
-        label: '更新时间',
-        minWidth: '250',
-        slotName: 'updateAt'
-      },
-      { prop: '操作', minWidth: '100', slotName: 'handler' }
-    ]
-    const showIndxColumn = true
-    const showSelectColumn = true
     return {
       searchFormConfig,
-      userList,
-      propList,
-      showIndxColumn,
-      showSelectColumn
+      contentTableConfig
     }
   }
 })
