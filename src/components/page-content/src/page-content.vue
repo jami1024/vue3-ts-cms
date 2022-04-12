@@ -37,13 +37,15 @@
           >
         </div>
       </template>
-      <template #image="scope">
-        <el-image
-          style="width: 60px; height: 60px"
-          :src="scope.row.imgUrl"
-          :preview-src-list="[scope.row.imgUrl]"
-        >
-        </el-image>
+      // 在page-content动态插入插槽
+      <template
+        v-for="item in otherPropSlots"
+        :key="item.prop"
+        #[item.slotName]="scope"
+      >
+        <template v-if="item.slotName">
+          <slot :name="item.slotName" :row="scope.row"></slot>
+        </template>
       </template>
     </zl-table>
   </div>
@@ -78,7 +80,7 @@ export default defineComponent({
     //     size: 10
     //   }
     // })
-    // 双向绑定pageInfo
+    // 1.双向绑定pageInfo
     const pageInfo = ref({ currentPage: 0, pageSize: 10 })
 
     watch(pageInfo, () => getPageData())
@@ -94,18 +96,30 @@ export default defineComponent({
       })
     }
     getPageData()
+    // 3.从vuex中获取数据
     const dataList = computed(() =>
       store.getters[`system/pageListData`](props.pageName)
     )
     const dataCount = computed(() =>
       store.getters[`system/pageListCount`](props.pageName)
     )
+    // 4.获取其他动态插槽名称
+    const otherPropSlots = props.contentTableConfig?.propList.filter(
+      (item: any) => {
+        if (item.slotName === 'status') return false
+        if (item.slotName === 'createAt') return false
+        if (item.slotName === 'updateAt') return false
+        if (item.slotName === 'handler') return false
+        return true
+      }
+    )
     // console.log('dataCount', dataCount)
     return {
       dataList,
       getPageData,
       dataCount,
-      pageInfo
+      pageInfo,
+      otherPropSlots
     }
   }
 })
