@@ -115,7 +115,9 @@ class ZLRequest {
   }
 
   delete<T = any>(config: ZLRequestConfig<T>): Promise<T> {
-    return this.request<T>({ ...config, method: 'DELETE' })
+    const delete_res = this.request<T>({ ...config, method: 'DELETE' })
+    console.log('delete_res', delete_res)
+    return delete_res
   }
 
   patch<T = any>(config: ZLRequestConfig<T>): Promise<T> {
