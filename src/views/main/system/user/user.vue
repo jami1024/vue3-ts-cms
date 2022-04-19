@@ -9,8 +9,14 @@
       ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       pageName="users"
+      @newBtnClick="handleNewData"
+      @editBtnClick="handleEditData"
     ></page-content>
-    <page-modal :modalConfig="modalConfig"></page-modal>
+    <page-modal
+      ref="pageModalRef"
+      :defaultInfo="defaultInfo"
+      :modalConfig="modalConfig"
+    ></page-modal>
   </div>
 </template>
 
@@ -23,6 +29,7 @@ import { searchFormConfig } from './config/search.config'
 import { contentTableConfig } from './config/content.config'
 import { modalConfig } from './config/modal.config'
 import { usePageSearch } from '@/hooks/use-page-search'
+import { usePageModal } from '@/hooks/use-page-modal'
 
 export default defineComponent({
   name: 'users',
@@ -33,13 +40,20 @@ export default defineComponent({
   },
   setup() {
     const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
+    const [pageModalRef, defaultInfo, handleNewData, handleEditData] =
+      usePageModal()
+    console.log('ssss', defaultInfo)
     return {
       searchFormConfig,
       contentTableConfig,
       pageContentRef,
       handleResetClick,
       handleQueryClick,
-      modalConfig
+      modalConfig,
+      pageModalRef,
+      defaultInfo,
+      handleNewData,
+      handleEditData
     }
   }
 })

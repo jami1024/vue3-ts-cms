@@ -8,7 +8,13 @@
     >
       <!-- 1.header中的插槽 -->
       <template #headerHandler>
-        <el-button v-if="isCreate" type="primary" size="medium">新增</el-button>
+        <el-button
+          v-if="isCreate"
+          @click="handleNewClick"
+          type="primary"
+          size="medium"
+          >新增</el-button
+        >
       </template>
 
       <!-- 2.列中的插槽 -->
@@ -29,7 +35,12 @@
       </template>
       <template #handler="scope">
         <div class="handle-btns">
-          <el-button v-if="isUpdate" icon="el-icon-edit" size="mini" type="text"
+          <el-button
+            v-if="isUpdate"
+            icon="el-icon-edit"
+            size="mini"
+            type="text"
+            @click="handleEditClick(scope.row)"
             >编辑</el-button
           >
           <el-button
@@ -77,7 +88,8 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
+  emits: ['newBtnClick', 'editBtnClick'],
+  setup(props, { emit }) {
     const store = useStore()
     // store.dispatch('system/getPageListAction', {
     //   pageName: props.pageName,
@@ -135,6 +147,13 @@ export default defineComponent({
         id: item.id
       })
     }
+    const handleNewClick = () => {
+      emit('newBtnClick')
+    }
+    const handleEditClick = (item: any) => {
+      console.log('handleEditClick', item)
+      emit('editBtnClick', item)
+    }
     return {
       dataList,
       getPageData,
@@ -144,7 +163,9 @@ export default defineComponent({
       isUpdate,
       isDelete,
       isCreate,
-      handleDeleteClick
+      handleDeleteClick,
+      handleNewClick,
+      handleEditClick
     }
   }
 })

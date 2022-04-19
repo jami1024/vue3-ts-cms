@@ -11,7 +11,7 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary">确 定</el-button>
+          <el-button type="primary"> 确 定 </el-button>
         </span>
       </template>
     </el-dialog>
@@ -43,17 +43,18 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const dialogVisible = ref(true)
+    const dialogVisible = ref(false)
     const formData = ref<any>({})
 
-    // watch(
-    //   () => props.defaultInfo,
-    //   (newValue) => {
-    //     for (const item of props.modalConfig.formItems) {
-    //       formData.value[`${item.field}`] = newValue[`${item.field}`]
-    //     }
-    //   }
-    // )
+    watch(
+      () => props.defaultInfo,
+      (newValue) => {
+        for (const item of props.modalConfig.formItems) {
+          console.log('item', item)
+          formData.value[`${item.field}`] = newValue[`${item.field}`]
+        }
+      }
+    )
 
     // 点击确定按钮的逻辑
     // const store = useStore()
