@@ -14,6 +14,7 @@
     ></page-content>
     <page-modal
       ref="pageModalRef"
+      pageName="users"
       :defaultInfo="defaultInfo"
       :modalConfig="modalConfigRef"
     ></page-modal>
@@ -43,6 +44,7 @@ export default defineComponent({
     const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
 
     //pageModal 相关的hook逻辑
+    // 1. 处理密码显示的逻辑
     const newCallback = () => {
       const passwordItem = modalConfig.formItems.find(
         (item) => item.field === 'password'
@@ -72,9 +74,9 @@ export default defineComponent({
       })
       return modalConfig
     })
+    // 3. 调用hook获取公共变量和函数
     const [pageModalRef, defaultInfo, handleNewData, handleEditData] =
       usePageModal(newCallback, editCallback)
-    console.log('ssss', defaultInfo)
     return {
       searchFormConfig,
       contentTableConfig,
