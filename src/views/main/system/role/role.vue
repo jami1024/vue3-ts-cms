@@ -49,6 +49,7 @@ import { modalConfig } from './config/modal.config'
 
 import { usePageModal } from '@/hooks/use-page-modal'
 import { usePageSearch } from '@/hooks/use-page-search'
+import { menuMapLeafKeys } from '@/utils/map-menus'
 
 export default defineComponent({
   name: 'role',
@@ -62,18 +63,18 @@ export default defineComponent({
     const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
     // 1.处理pageModal的hook
     const elTreeRef = ref<InstanceType<typeof ElTree>>()
-    // const editCallback = (item: any) => {
-    //   // const leafKeys = menuMapLeafKeys(item.menuList)
-    //   nextTick(() => {
-    //     console.log(elTreeRef.value)
-    //     elTreeRef.value?.setCheckedKeys(leafKeys, false)
-    //   })
-    // }
+    const editCallback = (item: any) => {
+      const leafKeys = menuMapLeafKeys(item.menuList)
+      nextTick(() => {
+        console.log(elTreeRef.value)
+        elTreeRef.value?.setCheckedKeys(leafKeys, false)
+      })
+    }
     const [pageModalRef, defaultInfo, handleNewData, handleEditData] =
-      usePageModal()
+      usePageModal(undefined, editCallback)
 
-    // const store = useStore()
-    // const menus = computed(() => store.state.entireMenu)
+    const store = useStore()
+    const menus = computed(() => store.state.entireMenu)
 
     const otherInfo = ref({})
     const handleCheckChange = (data1: any, data2: any) => {
@@ -91,7 +92,7 @@ export default defineComponent({
       defaultInfo,
       handleNewData,
       handleEditData,
-      // menus,
+      menus,
       otherInfo,
       handleCheckChange,
       elTreeRef,
